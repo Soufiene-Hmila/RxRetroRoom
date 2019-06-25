@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View {
             mainActivityPresenter.getDataFromDatabase()!!.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                    {brewaryList -> Log.i(TAG,"from database----->\n"+brewaryList.toString())},
+                    {articleList -> Log.i(TAG,"from database----->\n"+articleList.toString())},
                     {error -> Log.e(TAG,error.message)}
                 )
         }

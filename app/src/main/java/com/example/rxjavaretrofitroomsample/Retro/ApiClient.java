@@ -1,15 +1,16 @@
 package com.example.rxjavaretrofitroomsample.Retro;
 
-import com.example.rxjavaretrofitroomsample.BrewaryModel;
 import io.reactivex.Single;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 import java.util.List;
 
 public interface ApiClient {
 
-    @GET("/breweries")
-    Single<List<BrewaryModel>> getAllBrewaryList();
+    @GET("/svc/search/v2/articlesearch.json")
+    Single<ArticleResponseModel> getArticles(@Query("q") String q, @Query("api-key") String apiKey);
+
 }
 
 

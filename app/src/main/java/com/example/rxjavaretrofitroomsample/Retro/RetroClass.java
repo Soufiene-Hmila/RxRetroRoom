@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetroClass {
 
-    private static String BASE_URL="https://api.openbrewerydb.org";
+    private static String BASE_URL="https://api.nytimes.com";
 
 
     private static Retrofit getRetrofitInstance()
