@@ -3,9 +3,11 @@ package com.example.rxjavaretrofitroomsample
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.example.rxjavaretrofitroomsample.Retro.RetroClass
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), MainActivityContract.View {
 
@@ -17,8 +19,11 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         mainActivityPresenter = MainActivityPresenter(this)
+        toggleProgressBar(true)
+        //invokePresenterToCallApi()
 
-        invokePresenterToCallApi()
+        callMultipleApiParallalyFromPresenter()
+        //callMultipleApiInSequenceFromPresenter()
 
         mainActivityPresenter.getDataFromDatabase()?.let {
             mainActivityPresenter.getDataFromDatabase()!!.subscribeOn(Schedulers.io())
@@ -29,6 +34,22 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View {
                 )
         }
 
+    }
+
+    private fun callMultipleApiInSequenceFromPresenter() {
+        mainActivityPresenter.callThreeApisSequentially()
+    }
+
+    override fun toggleProgressBar(enable : Boolean){
+        if(enable)
+            progress_bar.visibility = View.VISIBLE
+        else
+            progress_bar.visibility = View.GONE
+
+    }
+
+    private fun callMultipleApiParallalyFromPresenter() {
+        mainActivityPresenter.callThreeApisParallely()
     }
 
     override fun invokePresenterToCallApi() {

@@ -6,6 +6,7 @@ interface MainActivityContract {
 
     interface View{
         fun invokePresenterToCallApi()
+        fun toggleProgressBar(enable : Boolean)
     }
 
     interface Presenter{
